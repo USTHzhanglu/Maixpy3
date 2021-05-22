@@ -1,0 +1,2 @@
+start jupyter
+python -c "from maix import rpycs; rpycs.start()"
