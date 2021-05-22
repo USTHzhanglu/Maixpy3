@@ -1,6 +1,53 @@
-## 编译环境问题
 
-### 1.` git submodule update --init --recursive`后，会有一部分文件夹为空
+
+
+
+# 前言
+
+没有前言。参考文献：[[Allwinner & Arm 中国 & Sipeed 开源硬件 R329 SDK 上手编译与烧录!](https://www.cnblogs.com/juwan/p/14650733.html)](https://www.cnblogs.com/juwan/p/14650733.html)
+
+# 搭建编译环境
+
+## 拉取仓库
+
+```sh
+git clone https://github.com/sipeed/R329-Tina-jishu
+cd R329-Tina-jishu
+git submodule update --init --recursive
+```
+
+仓库有些大，大概6G左右，保证网速稳定和空间足够
+
+## 安装依赖
+
+```sh
+sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
+```
+
+Ubuntu20 要增强一下，补一下下面两个包 libffi6 （python3 需要）。
+
+```sh
+wget http://mirrors.kernel.org/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_amd64.deb
+sudo apt install ./libffi6_3.2.1-8_amd64.deb
+
+sudo apt-get install uuid-dev
+```
+
+## 开始编译
+
+```
+cd R329-Tina-jishu
+source build/envsetup.sh
+lunch r329_evb5-tina
+make -j32
+pack
+```
+
+
+
+# 编译环境问题
+
+## 1.` git submodule update --init --recursive`后，会有一部分文件夹为空
 
 ```
 root@Lithromantic:/maixpy3/R329-Tina-jishu/build# cd ..
@@ -9,7 +56,7 @@ root@Lithromantic:/maixpy3/R329-Tina-jishu/dl# ls
 root@Lithromantic:/maixpy3/R329-Tina-jishu/dl# cd ..
 ```
 
-#### 解决方法：删除所有空文件夹，执行` git submodule update --recursive --remote` 
+### 解决方法：删除所有空文件夹，执行` git submodule update --recursive --remote` 
 
 ```sh
 root@Lithromantic:/maixpy3/R329-Tina-jishu# git submodule update  --recursive --remote
@@ -21,7 +68,7 @@ Submodule path 'target': checked out '3ce2fa0f91cce7ba8de7134ed3879ad15908d0cb'
 Submodule path 'toolchain': checked out '5ee02ba23449478aa9e2b605095fb2b9b880fb9f'
 ```
 
-### 2.`make -j32`后 ` configure: error`
+## 2.`make -j32`后 ` configure: error`
 
 ```sh
 configure: error: you should not run configure as root (set FORCE_UNSAFE_CONFIGURE=1 in environment to bypass this check)
@@ -37,20 +84,20 @@ make: *** [/maixpy3/R329-Tina-jishu/build/toplevel.mk:306: world] Error 2
 #### make failed to build some targets (04:52 (mm:ss)) ####
 ```
 
-#### 解决办法： `make`之前执行以下命令
+### 解决办法： `make`之前执行以下命令
 
 ```
 export FORCE_UNSAFE_CONFIGURE=1
 export FORCE=1
 ```
 
-### 3.`make: ***.mk:306: world] Error 2`
+## 3.`make: ***.mk:306: world] Error 2`
 
 `make[1]: *** [package/Makefile:189: /maixpy3/R329-Tina-jishu/out/r329-evb5/staging_dir/target/stamp/.package_compile] Error 2
 make[1]: Leaving directory '/maixpy3/R329-Tina-jishu'
 make: *** [/maixpy3/R329-Tina-jishu/build/toplevel.mk:306: world] Error 2`
 
-#### 解决办法：`make  -j1 V=s 2>&1|tee make.log`打印输出日志，cheak错误
+### 解决办法：`make  -j1 V=s 2>&1|tee make.log`打印输出日志，cheak错误
 
 定位到
 
