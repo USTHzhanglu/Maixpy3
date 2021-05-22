@@ -50,5 +50,32 @@ export FORCE=1
 make[1]: Leaving directory '/maixpy3/R329-Tina-jishu'
 make: *** [/maixpy3/R329-Tina-jishu/build/toplevel.mk:306: world] Error 2`
 
-#### 解决办法：
+#### 解决办法：`make  -j1 V=s 2>&1|tee make.log`打印输出日志，cheak错误
+
+定位到
+
+```sh
+make[3]: Leaving directory '/maixpy3/R329-Tina-jishu/package/libs/intltool'
+make[2]: *** [package/Makefile:192: package/libs/intltool/host/compile] Error 2
+```
+
+执行` rm -rf /package/libs/intltool `
+
+再次 `make  -j1 V=s 2>&1|tee make.log`后，定位到
+
+```sh
+checking for intltool >= 0.35.0...  found
+configure: error: Your intltool is too old.  You need intltool 0.35.0 or later.
+```
+
+执行`apt-get install intltool`
+
+再次`make  -j1 V=s 2>&1|tee make.log`
+
+```sh
+#### make completed successfully (26:27 (mm:ss)) ####
+
+```
+
+
 
