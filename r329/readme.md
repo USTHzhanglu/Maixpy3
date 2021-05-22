@@ -21,29 +21,7 @@ Submodule path 'target': checked out '3ce2fa0f91cce7ba8de7134ed3879ad15908d0cb'
 Submodule path 'toolchain': checked out '5ee02ba23449478aa9e2b605095fb2b9b880fb9f'
 ```
 
-### 2.`make -j32`后 ` No such file or directory`
-
-```sh
-===This's tina environment.===
-find: ‘/maixpy3/R329-Tina-jishu/lichee/brandy-2.0/spl’: No such file or directory
-r329_evb5 r329 r329-evb5
-build_boot platform:sun50iw11p1 o_option:spl-pub
-grep: /maixpy3/R329-Tina-jishu/lichee/brandy-2.0/spl/Makefile: No such file or directory
-Prepare toolchain ...
-ls: cannot access '/maixpy3/R329-Tina-jishu/lichee/brandy-2.0/spl-pub/board': No such file or directory
-mboot0 success!
-find: ‘/maixpy3/R329-Tina-jishu/lichee/brandy-2.0/spl’: No such file or directory
-touch: cannot touch '/maixpy3/R329-Tina-jishu/lichee/brandy-2.0/spl/.newest-68b329da9893e34099c7d8ad5cb9c940.patch': No such file or directory
-r329_evb5 r329 r329-evb5
-build_boot platform:sun50iw11p1 o_option:uboot
-grep: /maixpy3/R329-Tina-jishu/lichee/brandy-2.0/spl/Makefile: No such file or directory
-Prepare toolchain ...
-build for sun50iw11p1_defconfig ...
-Prepare riscv toolchain ...
-fatal: No names found, cannot describe anything.
-cat: .tmp_config_from_defconfig.o.md5sum: No such file or directory
-md5sum: .config: No such file or directory
-```
+### 2.`make -j32`后 ` configure: error`
 
 ```sh
 configure: error: you should not run configure as root (set FORCE_UNSAFE_CONFIGURE=1 in environment to bypass this check)
@@ -59,5 +37,18 @@ make: *** [/maixpy3/R329-Tina-jishu/build/toplevel.mk:306: world] Error 2
 #### make failed to build some targets (04:52 (mm:ss)) ####
 ```
 
-#### 解决办法
+#### 解决办法： `make`之前执行以下命令
+
+```
+export FORCE_UNSAFE_CONFIGURE=1
+export FORCE=1
+```
+
+### 3.`make: ***.mk:306: world] Error 2`
+
+`make[1]: *** [package/Makefile:189: /maixpy3/R329-Tina-jishu/out/r329-evb5/staging_dir/target/stamp/.package_compile] Error 2
+make[1]: Leaving directory '/maixpy3/R329-Tina-jishu'
+make: *** [/maixpy3/R329-Tina-jishu/build/toplevel.mk:306: world] Error 2`
+
+#### 解决办法：
 
