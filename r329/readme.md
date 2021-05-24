@@ -124,5 +124,15 @@ configure: error: Your intltool is too old.  You need intltool 0.35.0 or later.
 
 ```
 
+# 固件烧写
+
+1.烧写时需连接插摄像头一侧typec口。
+
+2.烧录参考[MaixII M2dock 烧录系统 - MaixPy (sipeed.com)。](https://cn.maixpy.sipeed.com/maixpy3/zh/install/maixii_m2dock/flash.html)
+
+3.烧录前先全盘格式化SD卡为mbr格式，否则可能会造成烧录到85%时提示失败。
+
+4.烧录大约耗时1分26秒，请勿着急。
+
 
 
