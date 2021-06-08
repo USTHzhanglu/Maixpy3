@@ -7,7 +7,7 @@
 [SDCardFormatter](https://www.sdcard.org/downloads/formatter/eula_windows/SDCardFormatterv5_WinEN.zip "SDCardFormatter")，这里用的win10的软件，根据个人爱好自行选择
 ## 镜像获取
 
-##  
+##  [v831.img.gz](v831.img.gz)
 
 # 系统烧录
 1. **格式化sd卡。**使用SDCardFormatter一键格式化，或者手动格式化为MBR分区，FAT32格式。
