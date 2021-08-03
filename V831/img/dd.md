@@ -4,11 +4,11 @@
 
 从下载站获取最新的 V831 系统镜像 [SDK_MaixII/release](http://dl.sipeed.com/shareURL/MAIX/SDK_MaixII/release) ，找不到就搜索 V831 获取最新的镜像。
 
-### 烧录设备
+## 烧录设备
 
 [MaixII M2dock 烧录系统 - MaixPy (sipeed.com)](https://cn.maixpy.sipeed.com/maixpy3/zh/install/maixii_m2dock/flash.html)
 
-### dd克隆
+## dd克隆
 
 `dd if=/dev/sdb status=progress| gzip > /root/image.gz`
 
@@ -16,7 +16,7 @@ if指定克隆前设备位置，sd卡挂载到sdb即sdb，可以使用fdisk -l�
 
 status=progress显示dd状态，dd文件过大时使用此命令可以有效缓解焦虑
 
-#### dd烧录
+## dd烧录
 
 `gzip -dc image.gz |sudo dd of=/dev/sdb bs=1M status=progress`
 
