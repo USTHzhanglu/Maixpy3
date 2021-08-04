@@ -16,7 +16,9 @@
 
 使用dd镜像后，会有部分储存空间未被使用，这时候需要扩容分区进行使用。
 
-linux下可以用fdisk或者GParted扩容，windows下可以尝试使用Diskgenus扩容（不推荐使用windows，可能会造成一些问题）
+linux下可以用fdisk或者GParted扩容，windows下可以使用磁盘管理或者Diskgenus扩容（不推荐使用windows，可能会造成一些问题）
+
+### linux系统下的扩容
 
 这里以fdisk示例，其他方法请自行摸索。
 
@@ -63,6 +65,9 @@ New name: UDISK
 
 Partition name changed from '' to 'UDISK'.
 
+##退出专家模式
+Expert command (m for help): r
+
 ##保存分区；
 Command (m for help): w
 The partition table has been altered.
@@ -70,8 +75,6 @@ Calling ioctl() to re-read partition table.
 Syncing disks.
 
 ```
-
-
 
 插入M2dock，验证：
 
@@ -93,4 +96,18 @@ Number  Start (sector)    End (sector)  Size Name
      5          882688         7626748 3292M UDISK
 ```
 
- 
+### windows下的系统扩容
+
+烧录完镜像后，按下win+X键，打开磁盘管理，找到可移动磁盘，选中磁盘分区5，删除
+
+![image-20210804173620185](https://raw.githubusercontent.com/USTHzhanglu/picture/main/img/image-20210804173620185.png)
+
+然后重新插入sd卡，选中未分配空间，右键添加简单卷，点击下一步直到完成。
+
+![](https://raw.githubusercontent.com/USTHzhanglu/picture/main/img/%E5%8A%A8%E7%94%BB.gif)
+
+插入M2dock，验证：
+
+![20210804](https://raw.githubusercontent.com/USTHzhanglu/picture/main/img/20210804.gif)
+
+然后就可以通过该分区快捷的在M2dock和各平台之间复制文件了。
