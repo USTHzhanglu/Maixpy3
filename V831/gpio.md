@@ -38,7 +38,7 @@ while led:
 1.PH_BASE:设置寄存器编号。GPIO编号计算公式：num=（n-1）x32+m，n为GPIO组号，m为pin号。例如PA(13)=（1-1）x32+13=13。为了方便使用，可以先设置寄存器编号，然后直接+Pin进行使用。
 
 ```python
-PH_BASE = 224 # "PH",(6-1)*32=224
+PH_BASE = 224 # "PH",(7-1)*32=224
 led = gpiochip1.get_line((PH_BASE + 14)) # "PH14",224+14
 ```
 
